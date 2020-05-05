@@ -111,7 +111,7 @@
 
 		var date = new Date();
 		var row = shedule.insertRow();		
-		var offset = cur_timestamp+iter_time*i
+		var offset = cur_timestamp/1+iter_time*i
 		date.setTime(offset);
 		line += `<td>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
 
