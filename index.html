@@ -48,7 +48,7 @@
 	ctx.fillStyle = "red"
 
 	var start_time = new Date(2020,3,30,12,37,1);			
-	var iter_time = 3668500/300;
+	var iter_time = 3668500;
 	var ax = 120;
 	var ay = 130;
 	var bx = 830;
@@ -91,7 +91,6 @@
 			j *= j;
 			x = ax + (bx-ax)*(1-i);
 			y = ay + (by-ay)*(1-i)*j + (by+ay)*(1-j)/2;
-			label.innerHTML = "4"
 			var date = new Date();
 			date.setTime(iter_time-pos);
 			label.innerHTML = `Прибытие в Две Короны через ${date.getMinutes()} м ${date.getSeconds()} с`;
