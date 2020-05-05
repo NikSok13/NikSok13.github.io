@@ -107,7 +107,7 @@
 	cur_timestamp = cur_timestamp - cur_timestamp % iter_time;
 	cur_timestamp+=start_time/1;
 	for (var i = 0; i < 24; i++) {
-		var line = "<tr${i==0?' color="green"':""}>";
+		var line = `<tr${i==0?' color="green"':""}>`;
 		
 		var date = new Date();
 		var row = shedule.insertRow();		
