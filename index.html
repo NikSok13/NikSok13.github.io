@@ -103,7 +103,10 @@
 	  	window.requestAnimationFrame(loop)
 	}
 	window.requestAnimationFrame(loop)
-	for (var i = 0; i < 160; i++) {
+	var cur_timestamp = Date.now() - start_time;
+	cur_timestamp = cur_timestamp - cur_timestamp % iter_time;
+	cur_timestamp+=start_time;
+	for (var i = 0; i < 10; i++) {
 		var line = "<tr>";
 
 		var date = new Date();
