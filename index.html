@@ -48,7 +48,7 @@
 	ctx.fillStyle = "red"
 
 	var start_time = new Date(2020,3,30,12,37,1);			
-	var iter_time = 3668500;
+	var iter_time = 3668500/300;
 	var ax = 120;
 	var ay = 130;
 	var bx = 830;
@@ -68,8 +68,11 @@
 			label.innerHTML = `Стоянка в Двух Коронах ${date.getMinutes()} м ${date.getSeconds()} с`;
 		} else if (pos < iter_time / 2){
 			var i = (pos - iter_time/3)/(iter_time/6);
+			var j = Math.abs(i-0.5)*2
+			i *= i;
+			j *= j;
 			x = ax + (bx-ax)*i;
-			y = ay + (by-ay)*i;
+			y = ay + (by-ay)*i*j + (by+ay)*(1-j)/2;
 			var date = new Date();
 			date.setTime(iter_time/2-pos);
 			label.innerHTML = `Прибытие в Ост-Терру через ${date.getMinutes()} м ${date.getSeconds()} с`;
@@ -81,8 +84,13 @@
 			label.innerHTML = `Стоянка в Ост-Терре ${date.getMinutes()} м ${date.getSeconds()} с`;
 		} else{
 			var i = (pos - 5*iter_time/6)/(iter_time/6);
-			x = bx - (bx-ax)*i;
-			y = by - (by-ay)*i;
+			var j = Math.abs(0.5-i)*2
+			i = 1-i;
+			i *= i;
+			i = 1-i;
+			j *= j;
+			x = ax + (bx-ax)*(1-i);
+			y = ay + (by-ay)*(1-i)*j + (by+ay)*(1-j)/2;
 			label.innerHTML = "4"
 			var date = new Date();
 			date.setTime(iter_time-pos);
@@ -92,7 +100,7 @@
 			ctx.beginPath();
 		ctx.arc( x, y, 8,0,2*Math.PI)
 	  	ctx.fill()
-	  	await sleep(100)
+	  	await sleep(10)
 	  	window.requestAnimationFrame(loop)
 	}
 	window.requestAnimationFrame(loop)
