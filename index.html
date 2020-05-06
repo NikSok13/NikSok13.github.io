@@ -1,40 +1,22 @@
 <html>
-	<head>
-		<meta charset="utf-8">
-				
-	</head>
+	<head> <meta charset="utf-8"> </head>
 	<body>
 		<div class="container">
 			<canvas id='canvas' width=1000 height=500></canvas>	
-			<img src="map.png">
+<!-- 			<img src="map.png"> -->
 			<p id='label'>-</p>
-			<table id="shedule" border="1">
-				<tr>
-					<td colspan="2">
-						Две Короны
-					</td>
-					<td colspan="2">
-						Ост-Терра
-					</td>
-
-				</tr><tr>
-					<td>
-						Прибытие
-					</td>
-					<td>
-						Отплытие
-					</td>
-					<td>
-						Прибытие
-					</td>
-					<td>
-						Отплытие
-					</td>
-
-				</tr>
-			</table>
 		</div>
 
+			<table id="shedule">
+				<thead>
+				<tr>
+					<td colspan="2"> Две Короны </td> <td colspan="2"> Ост-Терра </td>
+				</tr><tr>
+					<th> Прибытие </th> <th> Отплытие </th> <th> Прибытие </th> <th> Отплытие </th>
+				</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 	</body>
 </html>
 <script>
@@ -110,7 +92,7 @@
 		var line = `<tr${i==0?' color="green"':""}>`;
 		
 		var date = new Date();
-		var row = shedule.insertRow();		
+		var row = shedule.getElementsByTagName('tbody')[0].insertRow();		
 		var offset = cur_timestamp+iter_time*i
 		date.setTime(offset);
 		line += `<td>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
@@ -130,31 +112,58 @@
 </script>
 <style>
 html{
-
-    	padding: 0px;
+	background: #f1f1f1;
 	font-family: Arial;
 	font-size: 24;
 	text-align: center;
 }
 
-canvas{
-	z-index: 1;
-	position: absolute;	
+body{
+	margin: 0px;
+}
+#label{
+	color: white;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.5);
+	padding: 16px;
+    margin: 0 auto;
 }
 .container{
-	max-width: 1000px;
-    background: radial-gradient(circle, white 0%, rgb(222,222,222) 100%);
-    box-shadow: 0 0 2px black;
-    border-radius: 16px;
-    margin: 16px auto;
-    padding: 0px;
+	width: 1000px;
+ 	background-image: url("map.png");
+    margin: -1 auto;
     overflow: auto;
+    border-bottom: 1px solid gray;
+	position: -webkit-sticky; /* Safari */
+  	position: sticky;
+  	top: -1;
 }
 td{
 	text-align: center;
-
-	font-size: 36;
+	font-size: 24;
+	padding: 8px;
 }
-table{width:100%;}
+th{
+	background: #ddd;
+	padding: 8px;
+}
+
+tbody tr:nth-child(odd){
+    background: #f1f1f1;
+}
+
+tbody tr:nth-child(1){
+    background: #aaffcc;
+}
+
+table{
+    background: white;
+    box-shadow: 0 0 2px black;
+    border-radius: 16px;
+  	border-collapse: collapse;  	
+    margin: 16px auto;
+}
 
 		</style>
