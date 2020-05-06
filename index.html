@@ -94,17 +94,23 @@
 		var date = new Date();
 		var row = shedule.getElementsByTagName('tbody')[0].insertRow();		
 		var offset = cur_timestamp+iter_time*i
+		var cur_t = Date.now()/1;
+		
+		var color = offset<cur_t?'bgcolor="pink"':"";
 		date.setTime(offset);
-		line += `<td>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
+		line += `<td ${color}>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
 
+		color = offset+iter_time/3<cur_t?'bgcolor="pink"':"";
 		date.setTime(offset+iter_time/3);
-		line += `<td>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
+		line += `<td ${color}>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
 
+		color = offset+iter_time/2<cur_t?'bgcolor="pink"':"";
 		date.setTime(offset+iter_time/2);
-		line += `<td>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
+		line += `<td ${color}>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
 
+		color = offset+iter_time*5/6<cur_t?'bgcolor="pink"':"";
 		date.setTime(offset+iter_time*5/6);
-		line += `<td>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
+		line += `<td ${color}>${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}</td>`;
 
 		line += "</tr>";
 		row.innerHTML = line
